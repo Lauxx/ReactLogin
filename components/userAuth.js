@@ -9,9 +9,7 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-
-
-var AwareOfUser = require('./awareOfUser.js');
+var Aware = require('./awareOfUser.js');
 
 
 var UserAuth = React.createClass({
@@ -20,6 +18,7 @@ var UserAuth = React.createClass({
 			user: null
 		}
 	},
+
 
 	loginUserFromServer: function(user){
 		var self = this;
@@ -93,19 +92,13 @@ var UserAuth = React.createClass({
 
 
 	render: function(){
-			var user = this.state.user ? <AwareOfUser user={ this.state.user } logoutUser={ this.logoutUser } loginUserFromServer={ this.loginUserFromServer } signupUserFromServer={ this.signupUserFromServer }/> : null;
-			return (
-			<div>
-				<div className="container">
-					{ user }
-					
-				</div>
-			</div>
-			)
-	}
+			return this.state.user ? <Aware user={this.state.user} loginUserFromServer={this.loginUserFromServer} logoutUser={this.logoutUser} signupUserFromServer={this.signupUserFromServer}/> : null;
+		}		
 });
+
+// module.exports = UserAuth;
 
 ReactDOM.render(
 	<UserAuth/>,
-	document.getElementById('app')
+	document.getElementById('userAuth')
 );
